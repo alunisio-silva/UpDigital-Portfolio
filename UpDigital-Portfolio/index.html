@@ -145,8 +145,18 @@
     .contact-card h2{font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;letter-spacing:-.05em}
     .contact-card p{color:var(--muted);margin-top:10px}
     .contact-buttons{display:flex;flex-direction:column;gap:10px}
-    .contact-btn{padding:15px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:#181818;font-weight:800}
+    .contact-btn{display:flex;align-items:center;gap:9px;padding:15px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:#181818;font-weight:800}
     .contact-btn.whats{background:var(--green);color:#071107;border-color:transparent}
+    .whatsapp-icon{width:1.35em;height:1.35em;flex:none;fill:currentColor}
+    .lead-form{display:grid;gap:13px;margin-bottom:20px}
+    .lead-form label{display:grid;gap:6px;color:#ddd;font-size:.82rem;font-weight:750}
+    .lead-form input:not([type="checkbox"]){width:100%;min-height:48px;padding:0 13px;border:1px solid rgba(255,255,255,.12);border-radius:11px;background:#181818;color:var(--white);font:inherit}
+    .lead-form input:focus{outline:2px solid var(--gold);outline-offset:2px}
+    .lead-consent{display:grid!important;grid-template-columns:18px 1fr;align-items:start;gap:9px!important;color:var(--muted)!important;font-size:.74rem!important;font-weight:500!important}
+    .lead-consent input{accent-color:var(--green);margin-top:3px}
+    .lead-submit{display:flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:10px 16px;border:0;border-radius:12px;background:var(--green);color:#071107;font:inherit;font-weight:850;cursor:pointer}
+    .lead-submit:hover{filter:brightness(1.06)}
+    .lead-note{margin:0!important;color:#999!important;font-size:.72rem}
 
     footer{border-top:1px solid rgba(255,255,255,.07);padding:30px 0;color:#888;font-size:.8rem}
     .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
@@ -173,6 +183,8 @@
     }
     @media(max-width:620px){
       .container{width:min(var(--max),calc(100% - 24px))}
+      .contact-card{grid-template-columns:minmax(0,1fr);padding:20px}
+      .contact-card>*{min-width:0}
       .nav{height:68px}.brand img{width:42px;height:42px}.nav-links{top:68px}
       .hero{min-height:auto;padding:110px 0 55px}.hero h1{font-size:2.85rem}
       section{padding:65px 0}.section-head{display:block}.section-head p{margin-top:14px}
@@ -211,7 +223,7 @@
         <p>Empréstimos, serviços bancários e soluções digitais com atendimento claro, profissional e transparente.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#emprestimos">💰 Simular empréstimo</a>
-          <a class="btn btn-dark" href="https://wa.me/5589994587148?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os." target="_blank" rel="noopener">📲 Falar comigo</a>
+          <a class="btn btn-dark" href="#contato">📲 Falar comigo</a>
         </div>
         <div class="trust-row">
           <div class="trust"><strong>2022+</strong><span>Experiência</span></div>
@@ -237,7 +249,7 @@
 
       <div class="loan-grid">
         <article class="loan-card featured reveal">
-          <div class="loan-top"><div class="icon">♿</div><span class="tag">Destaque</span></div>
+          <div class="loan-top"><div class="icon">🧾</div><span class="tag">Destaque</span></div>
           <h3>Empréstimo consignado INSS</h3>
           <p>Opção voltada para beneficiários do INSS. Faça a simulação online pelo link abaixo.</p>
           <div class="loan-action">
@@ -265,7 +277,7 @@
         </article>
 
         <article class="loan-card featured reveal">
-          <div class="loan-top"><div class="icon">💳</div><span class="tag">FGTS</span></div>
+          <div class="loan-top"><div class="icon">💸</div><span class="tag">FGTS</span></div>
           <h3>Antecipação do saque-aniversário</h3>
           <p>Compare as opções de contratação disponíveis e escolha a plataforma de sua preferência.</p>
           <div class="sub-options">
@@ -360,10 +372,20 @@
           <h2>Precisa de ajuda? <span class="gold">Fale comigo.</span></h2>
           <p>Atendimento digital a partir de Bertolínia – PI para clientes de todo o Brasil.</p>
         </div>
-        <div class="contact-buttons">
-          <a class="contact-btn whats" href="https://wa.me/5589994587148?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20UpDigital.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener">💬 WhatsApp: (89) 99458-7148</a>
+        <div>
+          <form class="lead-form" id="leadForm">
+            <label for="leadName">Nome<input id="leadName" name="name" type="text" autocomplete="name" maxlength="100" required></label>
+            <label for="leadCpf">CPF<input id="leadCpf" name="cpf" type="text" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14" required></label>
+            <label for="leadPhone">Telefone<input id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" maxlength="15" required></label>
+            <label class="lead-consent"><input name="consent" type="checkbox" required><span>Autorizo o envio do meu nome, CPF e telefone para a UpDigital pelo WhatsApp para receber atendimento.</span></label>
+            <button class="lead-submit" type="submit"><svg class="whatsapp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.93 9.93 0 0 0-8.56 14.96L2 22l5.22-1.37A9.93 9.93 0 1 0 12.04 2Zm0 18.12a8.16 8.16 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.17 8.17 0 1 1 6.93 3.84Zm4.48-6.12c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.57.13-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.52.11-.11.25-.3.38-.45.12-.15.16-.25.25-.42.08-.17.04-.32-.02-.45-.06-.12-.57-1.37-.78-1.88-.2-.5-.41-.43-.57-.44l-.49-.01c-.17 0-.45.06-.68.32-.23.25-.89.87-.89 2.12s.91 2.46 1.04 2.63c.12.17 1.79 2.73 4.33 3.83.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.48-.61 1.69-1.2.21-.59.21-1.1.15-1.2-.06-.1-.23-.16-.48-.29Z"/></svg> Enviar pelo WhatsApp</button>
+            <p class="lead-note" id="leadStatus" aria-live="polite">Seus dados serão enviados pelo WhatsApp após o envio do formulário.</p>
+          </form>
+          <div class="contact-buttons">
+          <a class="contact-btn whats" href="https://wa.me/5589994587148?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20UpDigital.%20Gostaria%20de%20atendimento." target="_blank" rel="noopener"><svg class="whatsapp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.93 9.93 0 0 0-8.56 14.96L2 22l5.22-1.37A9.93 9.93 0 1 0 12.04 2Zm0 18.12a8.16 8.16 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.17 8.17 0 1 1 6.93 3.84Zm4.48-6.12c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.57.13-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.52.11-.11.25-.3.38-.45.12-.15.16-.25.25-.42.08-.17.04-.32-.02-.45-.06-.12-.57-1.37-.78-1.88-.2-.5-.41-.43-.57-.44l-.49-.01c-.17 0-.45.06-.68.32-.23.25-.89.87-.89 2.12s.91 2.46 1.04 2.63c.12.17 1.79 2.73 4.33 3.83.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.48-.61 1.69-1.2.21-.59.21-1.1.15-1.2-.06-.1-.23-.16-.48-.29Z"/></svg> WhatsApp: (89) 99458-7148</a>
           <a class="contact-btn" href="https://instagram.com/updigital" target="_blank" rel="noopener">◎ Instagram: @updigital</a>
           <a class="contact-btn" href="mailto:updigitalservicos@gmail.com">✉️ updigitalservicos@gmail.com</a>
+          </div>
         </div>
       </div>
     </div>
@@ -380,13 +402,73 @@
   </div>
 </footer>
 
-<a class="whatsapp-float" href="https://wa.me/5589994587148?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20UpDigital." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">◉</a>
+<a class="whatsapp-float" href="https://wa.me/5589994587148?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20UpDigital." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg class="whatsapp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.93 9.93 0 0 0-8.56 14.96L2 22l5.22-1.37A9.93 9.93 0 1 0 12.04 2Zm0 18.12a8.16 8.16 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.17 8.17 0 1 1 6.93 3.84Zm4.48-6.12c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.57.13-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.52.11-.11.25-.3.38-.45.12-.15.16-.25.25-.42.08-.17.04-.32-.02-.45-.06-.12-.57-1.37-.78-1.88-.2-.5-.41-.43-.57-.44l-.49-.01c-.17 0-.45.06-.68.32-.23.25-.89.87-.89 2.12s.91 2.46 1.04 2.63c.12.17 1.79 2.73 4.33 3.83.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.48-.61 1.69-1.2.21-.59.21-1.1.15-1.2-.06-.1-.23-.16-.48-.29Z"/></svg></a>
 
 <script>
   const menuBtn = document.getElementById('menuBtn');
   const navLinks = document.getElementById('navLinks');
   menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const leadForm = document.getElementById('leadForm');
+  const leadCpf = document.getElementById('leadCpf');
+  const leadPhone = document.getElementById('leadPhone');
+
+  leadCpf.addEventListener('input', () => {
+    leadCpf.setCustomValidity('');
+    const digits = leadCpf.value.replace(/\D/g, '').slice(0, 11);
+    if (digits.length > 9) leadCpf.value = `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9)}`;
+    else if (digits.length > 6) leadCpf.value = `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6)}`;
+    else if (digits.length > 3) leadCpf.value = `${digits.slice(0, 3)}.${digits.slice(3)}`;
+    else leadCpf.value = digits;
+  });
+
+  leadPhone.addEventListener('input', () => {
+    leadPhone.setCustomValidity('');
+    const digits = leadPhone.value.replace(/\D/g, '').slice(0, 11);
+    if (digits.length > 10) leadPhone.value = `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+    else if (digits.length > 6) leadPhone.value = `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+    else if (digits.length > 2) leadPhone.value = `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+    else if (digits.length > 0) leadPhone.value = `(${digits}`;
+  });
+
+  leadForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const cpf = leadCpf.value.replace(/\D/g, '');
+    const phone = leadPhone.value.replace(/\D/g, '');
+    let cpfSum = 0;
+    for (let index = 0; index < 9; index++) cpfSum += Number(cpf[index]) * (10 - index);
+    let firstDigit = (cpfSum * 10) % 11;
+    if (firstDigit === 10) firstDigit = 0;
+    cpfSum = 0;
+    for (let index = 0; index < 10; index++) cpfSum += Number(cpf[index]) * (11 - index);
+    let secondDigit = (cpfSum * 10) % 11;
+    if (secondDigit === 10) secondDigit = 0;
+
+    if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf) || Number(cpf[9]) !== firstDigit || Number(cpf[10]) !== secondDigit) {
+      leadCpf.setCustomValidity('Informe um CPF válido.');
+      leadCpf.reportValidity();
+      return;
+    }
+    leadCpf.setCustomValidity('');
+    if (phone.length < 10) {
+      leadPhone.setCustomValidity('Informe um telefone com DDD.');
+      leadPhone.reportValidity();
+      return;
+    }
+    leadPhone.setCustomValidity('');
+
+    const name = document.getElementById('leadName').value.trim();
+    const message = `Olá! Gostaria de atendimento.\nNome: ${name}\nCPF: ${leadCpf.value}\nTelefone: ${leadPhone.value}`;
+    const whatsappUrl = `https://wa.me/5589994587148?text=${encodeURIComponent(message)}`;
+    const whatsappWindow = window.open(whatsappUrl, '_blank');
+    if (whatsappWindow) {
+      whatsappWindow.opener = null;
+      document.getElementById('leadStatus').textContent = 'Conversa aberta no WhatsApp com os dados preenchidos. Conclua o envio por lá.';
+    } else {
+      window.location.href = whatsappUrl;
+    }
+  });
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
